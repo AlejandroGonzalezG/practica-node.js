@@ -2,18 +2,19 @@ const express = require('express');
 
 const app = express();
 
+require('dotenv').config();
+
 const port = process.env.PORT || 3000;
 
 
 // Conexión a base de datos con Mongoose y Mongodb
 const mongoose = require('mongoose');
 
-const user = '';
-const password = '';
-const uri = '';
+
+const uri = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@clusterprueba.7sgpdv8.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;
 
 mongoose.connect(uri, 
-    {userNewUrlParser: true, useUnifiedTopology: true})
+    {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => console.log("Base de datos conectada correctamente"))
     .catch(e => console.log(e))
 
