@@ -1,6 +1,13 @@
 const express = require('express');
-
+const bodyParser = require('body-parser')
 const app = express();
+
+// parse application/x-www-form-urLencoded
+app.use(bodyParser.urlencoded({ extended: false}));
+// parse application/json
+app.use(bodyParser.json());
+
+
 
 require('dotenv').config();
 
@@ -11,7 +18,7 @@ const port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 
 
-const uri = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@clusterprueba.7sgpdv8.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://ejercicio_node:${process.env.PASSWORD}@clusterprueba.7sgpdv8.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;
 
 mongoose.connect(uri, 
     {useNewUrlParser: true, useUnifiedTopology: true})
